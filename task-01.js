@@ -1,7 +1,11 @@
-const findLiItem = document.querySelectorAll('li.item').length;
-console.log(`В списке ${findLiItem} категории`);
+const findCategories = document.querySelectorAll('li.item').length;
+console.log(`В списке ${findCategories} категории`);
 
-const findH2 = document.querySelectorAll('h2');
-console.log([...findH2.textContent]);
-const findLi = document.querySelectorAll('li.item>ul>li').length;
-
+const findItemCategories = [...categories.children];
+const result = findItemCategories
+  .map(
+    elem =>
+      `Категория: ${elem.children[0].textContent} \nКоличество элементов: ${elem.children[1].children.length}`
+  )
+  .join('\n');
+console.log(result);

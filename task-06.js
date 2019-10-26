@@ -1,15 +1,16 @@
-const linkValidation = document.querySelector("#validation-input");
+const linkValidation = document.querySelector('#validation-input');
 console.log(linkValidation);
 
-const handleFocus = e => {
+const handleBlur = e => {
   e.preventDefault();
   const { target } = e;
-  console.log(target.value.length);
   if (target.value.length === 6) {
-    linkValidation.classList.add("valid");
+    linkValidation.classList.add('valid');
+    linkValidation.classList.remove('invalid');
   } else {
-    linkValidation.classList.add("invalid");
+    linkValidation.classList.add('invalid');
+    linkValidation.classList.remove('valid');
   }
 };
 
-linkValidation.addEventListener("blur", handleFocus);
+linkValidation.addEventListener('blur', handleBlur);

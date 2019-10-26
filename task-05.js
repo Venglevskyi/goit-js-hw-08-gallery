@@ -1,5 +1,5 @@
 const link = {
-  input: document.querySelector('input'),
+  input: document.querySelector('input#name-input'),
   output: document.querySelector('#name-output'),
 };
 

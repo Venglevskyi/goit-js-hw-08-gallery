@@ -1,10 +1,10 @@
 const linkValidation = document.querySelector('#validation-input');
-console.log(linkValidation);
+const valuePlasholder = Number(linkValidation.attributes[2].textContent);
 
 const handleBlur = e => {
   e.preventDefault();
   const { target } = e;
-  if (target.value.length === 6) {
+  if (target.textLength === valuePlasholder) {
     linkValidation.classList.add('valid');
     linkValidation.classList.remove('invalid');
   } else {

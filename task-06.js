@@ -4,7 +4,7 @@ const valuePlasholder = Number(linkValidation.attributes[2].textContent);
 const handleBlur = e => {
   e.preventDefault();
   const { target } = e;
-  if (target.textLength === valuePlasholder) {
+  if (target.value.length === valuePlasholder) {
     linkValidation.classList.add('valid');
     linkValidation.classList.remove('invalid');
   } else {

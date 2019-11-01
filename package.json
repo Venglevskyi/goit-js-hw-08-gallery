@@ -1,5 +1,5 @@
 {
-  "name": "goit-js-hm-07",
+  "name": "goit-js-hw-08-gallery",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Venglevskyi/goit-js-hw-07.git"
+    "url": "git+https://github.com/Venglevskyi/goit-js-hw-08-gallery.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Venglevskyi/goit-js-hw-07/issues"
+    "url": "https://github.com/Venglevskyi/goit-js-hw-08-gallery/issues"
   },
-  "homepage": "https://github.com/Venglevskyi/goit-js-hw-07#readme",
+  "homepage": "https://github.com/Venglevskyi/goit-js-hw-08-gallery#readme",
   "devDependencies": {
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",

@@ -9,7 +9,6 @@ const refs = {
   ),
   closeModalWindowWithBg: document.querySelector(".lightbox__content")
 };
-console.log(refs.closeBtn);
 
 const creatGalleryItems = galleryItems
   .map(({ preview, description, original }) => {
@@ -26,17 +25,20 @@ const creatGalleryItems = galleryItems
   .join(" ");
 refs.gallery.insertAdjacentHTML("afterbegin", creatGalleryItems);
 
-function openModalWindow({ target }) {
+function openModalWindow({target}) {
   event.preventDefault();
   refs.modalWindow.classList.add("is-open");
   if (target.tagName !== "IMG") return;
   refs.fullScreenImage.setAttribute("src", `${target.dataset.source}`);
   refs.fullScreenImage.setAttribute("alt", `${target.getAttribute("alt")}`);
+  window.addEventListener("keydown", closeWithEscape);
+  target.classList.add("active");
 }
 
 function closeModalWindow() {
   refs.modalWindow.classList.remove("is-open");
   refs.fullScreenImage.setAttribute("src", "");
+  window.removeEventListener("keydown", closeWithEscape);
 }
 
 function closeOnClickWithBg({ target, currentTarget }) {
@@ -44,19 +46,35 @@ function closeOnClickWithBg({ target, currentTarget }) {
   closeModalWindow();
 }
 
-function closeWithEscape({ key }) {
-  if (key === "Escape") closeModalWindow();
+function closeWithEscape({ code }) {
+  if (code === "Escape") closeModalWindow();
 }
 
+function handleNextImage({code}) {
+  if (code === "ArrowRight" || code === "ArrowLeft") {
+    const ArrItems = Array.from(document.querySelectorAll(".gallery__image"));
+    let current = ArrItems.findIndex(elem => elem.classList.contains("active"));
+    ArrItems[current].classList.remove("active");
 
-function handleNextImage({ key }) {
-  if (key === "ArrowLeft" || key === "ArrowRight") {
-    const arrItems = Array.from(document.querySelectorAll(".gallery__image"));
-    console.log(arrItems);
-}
+    if (code === "ArrowRight") {
+      current += 1;
+    };
+    if (code === "ArrowLeft") {
+      current -= 1;
+    }
+    if (current < 0) {
+        current = ArrItems.length -1;
+    }
+    if (current > ArrItems.length -1) {
+        current = 0;
+    }
+    const nextImage = ArrItems[current];
+    nextImage.classList.add("active");
+    refs.fullScreenImage.setAttribute("src", `${nextImage.dataset.source}`);
+    refs.fullScreenImage.setAttribute("alt", `${nextImage.getAttribute("alt")}`);
+  }
 }
 refs.gallery.addEventListener("click", openModalWindow);
 refs.closeBtn.addEventListener("click", closeModalWindow);
 refs.closeModalWindowWithBg.addEventListener("click", closeOnClickWithBg);
-window.addEventListener("keydown", closeWithEscape);
 window.addEventListener("keydown", handleNextImage);
